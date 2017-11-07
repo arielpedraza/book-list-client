@@ -8,10 +8,10 @@
     <script id="book-template" type="text/x-handlebars-template">
       <article class="clearfix">
         <header>
-          <h2>{{title}}</h2><h4>{{isbn}}</h4>
+          <h2>{{book_id}}. {{title}}</h2><h4>{{isbn}}</h4>
           <div class="byline"><h3>By {{author}}</h3></div>
         </header>
-        <section class="book-img"><a href="{{image_url}}"></a></section>
+        <section class="book-img"><img src="{{image_url}}" /></section>
       </article>
     </script>
   </head>
