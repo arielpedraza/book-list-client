@@ -8,13 +8,14 @@
     <script id="book-template" type="text/x-handlebars-template">
       <article class="clearfix">
         <header>
-          <h2>{{title}}</h2><h4>{{isbn}}</h4>
+          <h2>{{book_id}}. {{title}}</h2><h4>{{isbn}}</h4>
           <div class="byline"><h3>By {{author}}</h3></div>
         </header>
-        <section class="book-img"><a href="{{image_url}}"></a></section>
+        <section class="book-img"><img src="{{image_url}}" /></section>
       </article>
     </script>
   </head>
+
   <body>
     <header>
       <nav class="main-nav">
@@ -27,12 +28,12 @@
     </header>
     <main>
       <h1>Hello World!</h1>
-      <section class="tab-content"></section>
+      <section id="books" class="tab-content"></section>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="scripts/models/book.js"></script>
-    <script src="scripts/views/bookView.js"></script>
+    <script src="scripts/views/book-view.js"></script>
     <script>
       app.Book.fetchAll(app.bookView.initIndexPage);
     </script>
