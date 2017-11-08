@@ -3,20 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/rest.css">
+    <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/modules/book-main.css">
+    <link rel="stylesheet" href="styles/modules/detail-main.css">
+    <link rel="stylesheet" href="styles/modules/error.css">
+    <link rel="stylesheet" href="styles/modules/footer.css">
+    <link rel="stylesheet" href="styles/modules/form-main.css">
+    <link rel="stylesheet" href="styles/modules/header.css">
     <title>Book App</title>
 
-    <script id="book-template" type="text/x-handlebars-template">
-      <article class="clearfix">
+    <script id="list-template" type="text/x-handlebars-template">
+      <article class="clearfix books" data-fetchone="{{book_id}}">
         <header>
           <h2>{{book_id}}. {{title}}</h2><h4>{{isbn}}</h4>
           <div class="byline"><h3>By {{author}}</h3></div>
         </header>
         <section class="book-img"><img src="{{image_url}}" /></section>
+      </article>
+    </script>
+
+    <script id="book-display-template" type="text/x-handlebars-template">
+      <article class="clearfix" id="{{book_id}}">
+        <header>
+          <h2>{{title}}</h2>
+          <div class="byline"><h4>{{author}}</h4><h4>{{isbn}}</h4></div>
+        </header>
+        <section class="book-img"><img src="{{image_url}}" /></section>
+        <p>{{description}}</p>
       </article>
     </script>
   </head>
@@ -26,18 +42,33 @@
       <nav class="main-nav">
         <div class="icon-menu"></div>
         <ul>
-          <li class="tab" data-content="books"><a href="#" class="icon-home"> Home</a></li>
-          <li class="tab" data-content="about"><a href="#" class="icon-address-book"> About</a></li>
+          <li class="tab" data-content="books"><a href="/"> Home</a></li>
+          <li class="tab" data-content="about"><a href="/about"> About</a></li>
+          <li class="tab" data-content="newbook"><a href="/new"> Add Book</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section id="books" class="tab-content"></section>
+      <section id="display" class="tab-content"></section>
+      <section id="newbook" class="tab-content" style="display:none">
+        <h1>Add a New Book</h1>
+        <form action="#" id="new-book">
+            <input type="text" id="book-title" placeholder="Book title" required>
+            <input type="text" id="book-author" placeholder="Author Name" required>
+            <input type="text" id="book-isbn" placeholder="ISBN" required>
+            <input type="text" id="book-img-url" placeholder="Book Image URL" required>
+          <textarea id="book-description" rows="8" cols="40" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="scripts/models/book.js"></script>
     <script src="scripts/views/book-view.js"></script>
+    <script src="scripts/views/routes.js"></script>
     <script>
       app.Book.fetchAll(app.bookView.initIndexPage);
     </script>

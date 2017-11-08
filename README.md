@@ -15,5 +15,6 @@ Client side MVC hosted on gh-pages while server side hosted on Heroku with datab
 
 ## Change Log
 11-07-2017 - Application can display books loaded from database.
+11-08-2017 - Application can allow new books to be added and display book details.
 
 ## Credits and Collaborations
