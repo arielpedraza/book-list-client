@@ -39,6 +39,7 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
     $.get(`${__API_URL__}book/${id}`)
       .then(data => {
         console.log(data);
+        $('#display').empty();
         $('#display').append(Book.addDescription(data[0]));
       })
   };
