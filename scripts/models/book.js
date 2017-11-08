@@ -37,7 +37,16 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
 
   Book.fetchOne = id => {
     $.get(`${__API_URL__}book/${id}`)
-      .then(data => $('#display').append(Book.addDescription(data)))
+      .then(data => {
+        console.log(data);
+        $('#display').append(Book.addDescription(data[0]));
+      })
+  };
+
+  Book.prototype.insertRecord = function(callback) {
+    $.post(`${__API_URL__}newbook/`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
+      .then(console.log)
+      .then(callback)
   };
 
   module.Book = Book;
