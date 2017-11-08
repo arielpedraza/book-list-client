@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+main {
+  margin: 2vw;
+  text-align: center;
+}
+
+nav {
+  background-color: #baddad;
+}
+
+h2 {
+  font-size: 6vw;
+}
+
+h3 {
+  font-size: 4vw;
+}
+
+.book-img {
+  max-height: 10em;
+  overflow: hidden;
+
+}
+
+img {
+  width: 70%;
+  object-fit: cover;
+}
+
+.books {
+  margin-bottom: 5vw;
+}
