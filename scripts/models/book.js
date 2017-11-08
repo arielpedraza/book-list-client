@@ -15,8 +15,13 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
   }
 
   Book.prototype.toHtml = function() {
-    var template = Handlebars.compile($('#book-template').text());
+    var template = Handlebars.compile($('#list-template').text());
     return template(this);
+  };
+
+  Book.addDescription = function(data) {
+    var template = Handlebars.compile($('#book-display-template').text());
+    return template(data);
   };
 
   Book.loadAll = rawData => {
@@ -29,5 +34,11 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
       .then(callback)
       .then(errorCallback)
   }
+
+  Book.fetchOne = id => {
+    $.get(`${__API_URL__}book/${id}`)
+      .then(data => $('#display').append(Book.addDescription(data)))
+  };
+
   module.Book = Book;
 })(app);
