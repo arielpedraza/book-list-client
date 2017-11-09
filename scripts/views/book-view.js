@@ -4,17 +4,6 @@ var app = app || {};
 ((module) => {
   var bookView = {};
 
-
-  // bookView.handleMainNav = () => {
-  //   $('.main-nav').on('click', '.tab', function() {
-  //     $('.tab-content').hide();
-  //     $(`#${$(this).data('content')}`).fadeIn();
-  //     $('.books').fadeIn();
-  //   });
-  //
-  //   $('.main-nav .tab:first').click();
-  // };
-
   bookView.handleSelectBook = () => {
     $('#books').on('click', '.books', function() {
       $('#books .books').hide();
@@ -22,6 +11,8 @@ var app = app || {};
       $('#display').fadeIn();
       app.Book.fetchOne($(this).data('fetchone'));
     });
+    $('#display').on('click', '#update-button', bookView.initUpdatePage);
+    $('#display').on('click', '#delete-button', app.Book.deleteRecord);
   };
 
   bookView.submit = event => {
@@ -33,8 +24,22 @@ var app = app || {};
       image_url: $('#book-img-url').val(),
       description: $('#book-description').val(),
     });
-    $('#books').append(book.toHtml());
+    // $('#books').append(book.toHtml());
     book.insertRecord();
+    window.location = '/';
+  }
+
+  bookView.submitUpdate = event => {
+    event.preventDefault();
+    let book = new app.Book({
+      title: $('#update-title').val(),
+      author: $('#update-author').val(),
+      isbn: $('#update-isbn').val(),
+      image_url: $('#update-img-url').val(),
+      description: $('#update-description').val(),
+    });
+    app.Book.all = [];
+    book.updateRecord($('#update-button').data('id'));
     window.location = '/';
   }
 
@@ -43,7 +48,6 @@ var app = app || {};
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
     $('.tab-content').hide();
     $('#books').fadeIn();
-    // bookView.handleMainNav();
   };
 
   bookView.initAboutPage = () => {
@@ -54,10 +58,18 @@ var app = app || {};
   bookView.initNewPage = () => {
     $('.tab-content').hide();
     $('#newbook').fadeIn();
-    $('#new-book').on('submit', bookView.submit);
+  };
+
+  bookView.initUpdatePage = function () {
+    $('.tab-content').hide();
+    console.log($(this).data('id'));
+    app.Book.updateOne($(this).data('id'));
+    $('#updatebook').fadeIn();
   };
 
   module.bookView = bookView;
 })(app);
 
+$('#new-book').on('submit', app.bookView.submit);
+$('#update-book').on('submit', app.bookView.submitUpdate);
 app.bookView.handleSelectBook();
