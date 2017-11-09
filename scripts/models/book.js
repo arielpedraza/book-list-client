@@ -1,6 +1,7 @@
 'use strict';
 var app = app || {};
 const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+// const __API_URL__ = 'https://localhost:3000/';
 
 ((module) => {
   Book.all = [];
