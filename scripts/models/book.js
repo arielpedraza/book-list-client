@@ -1,6 +1,7 @@
 'use strict';
 var app = app || {};
 const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+// const __API_URL__ = 'https://localhost:3000/';
 
 ((module) => {
   Book.all = [];
@@ -32,7 +33,7 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
     $.get(`${__API_URL__}api/v1/books`)
       .then(Book.loadAll)
       .then(callback)
-      .then(errorCallback)
+      .catch(errorCallback)
   }
 
   Book.fetchOne = id => {

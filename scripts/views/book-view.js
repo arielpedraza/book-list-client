@@ -44,7 +44,6 @@ var app = app || {};
     $('.tab-content').hide();
     $('#books').fadeIn();
     // bookView.handleMainNav();
-    bookView.handleSelectBook();
   };
 
   bookView.initAboutPage = () => {
@@ -60,3 +59,5 @@ var app = app || {};
 
   module.bookView = bookView;
 })(app);
+
+app.bookView.handleSelectBook();
