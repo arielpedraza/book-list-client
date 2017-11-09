@@ -23,7 +23,7 @@ var app = app || {};
       image_url: $('#book-img-url').val(),
       description: $('#book-description').val(),
     });
-    $('#books').append(book.toHtml());
+    // $('#books').append(book.toHtml());
     book.insertRecord();
     window.location = '/';
   }
@@ -37,11 +37,9 @@ var app = app || {};
       image_url: $('#update-img-url').val(),
       description: $('#update-description').val(),
     });
-    console.log('this is the updated book obj ' + JSON.stringify(book));
-    console.log($('#update-button').data('id'));
-    book.updateRecord($('#update-button').data('id'));
     app.Book.all = [];
-    app.Book.fetchAll(app.bookView.initIndexPage);
+    book.updateRecord($('#update-button').data('id'));
+    // app.Book.fetchAll(app.bookView.initIndexPage);
     window.location = '/';
   }
 
@@ -60,7 +58,6 @@ var app = app || {};
   bookView.initNewPage = () => {
     $('.tab-content').hide();
     $('#newbook').fadeIn();
-    $('#new-book').on('submit', bookView.submit);
   };
 
   bookView.initUpdatePage = function () {
@@ -68,10 +65,11 @@ var app = app || {};
     console.log($(this).data('id'));
     app.Book.updateOne($(this).data('id'));
     $('#updatebook').fadeIn();
-    $('#update-book').on('submit', bookView.submitUpdate);
   };
 
   module.bookView = bookView;
 })(app);
 
+$('#new-book').on('submit', app.bookView.submit);
+$('#update-book').on('submit', app.bookView.submitUpdate);
 app.bookView.handleSelectBook();

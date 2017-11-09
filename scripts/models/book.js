@@ -1,7 +1,7 @@
 'use strict';
 var app = app || {};
-const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
-// const __API_URL__ = 'http://172.16.3.126:3000/';
+// const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+const __API_URL__ = 'http://172.16.3.126:3000/';
 
 ((module) => {
   Book.all = [];
@@ -64,7 +64,7 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
 
   Book.prototype.insertRecord = function(callback) {
     $.post(`${__API_URL__}book/new/`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-      .then(console.log)
+      .then(app.Book.fetchAll(app.bookView.initIndexPage))
       .then(callback)
   };
 
@@ -81,7 +81,7 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
         description: this.description
       }
     })
-      .then(console.log)
+      .then(app.Book.fetchAll(app.bookView.initIndexPage))
   };
 
   module.Book = Book;
