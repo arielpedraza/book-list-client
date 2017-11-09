@@ -16,9 +16,7 @@ var app = app || {};
   // };
 
   bookView.handleSelectBook = () => {
-    console.log('page load?');
     $('#books').on('click', '.books', function() {
-      console.log('how many times?')
       $('#books .books').hide();
       $('#display').empty();
       $('#display').fadeIn();
