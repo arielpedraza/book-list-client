@@ -69,7 +69,6 @@ const __API_URL__ = 'http://172.16.3.126:3000/';
   };
 
   Book.prototype.updateRecord = function(id) {
-    console.log('id before put' + JSON.stringify(this));
     $.ajax({
       url: `${__API_URL__}book/update/${id}`,
       method: 'PUT',
@@ -80,6 +79,14 @@ const __API_URL__ = 'http://172.16.3.126:3000/';
         image_url: this.image_url,
         description: this.description
       }
+    })
+      .then(app.Book.fetchAll(app.bookView.initIndexPage))
+  };
+
+  Book.deleteRecord = function() {
+    $.ajax({
+      url: `${__API_URL__}book/delete/${$(this).data('id')}`,
+      method: 'DELETE',
     })
       .then(app.Book.fetchAll(app.bookView.initIndexPage))
   };

@@ -12,6 +12,7 @@ var app = app || {};
       app.Book.fetchOne($(this).data('fetchone'));
     });
     $('#display').on('click', '#update-button', bookView.initUpdatePage);
+    $('#display').on('click', '#delete-button', app.Book.deleteRecord);
   };
 
   bookView.submit = event => {
@@ -39,7 +40,6 @@ var app = app || {};
     });
     app.Book.all = [];
     book.updateRecord($('#update-button').data('id'));
-    // app.Book.fetchAll(app.bookView.initIndexPage);
     window.location = '/';
   }
 
