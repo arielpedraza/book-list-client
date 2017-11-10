@@ -1,9 +1,11 @@
 'use strict';
 var app = app || {};
-const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
-// const __API_URL__ = 'http://172.16.3.126:3000/';
 
 ((module) => {
+  var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  // if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  //   __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  // }
   Book.all = [];
 
   function errorCallback(err) {
@@ -37,9 +39,9 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
   }
 
   Book.fetchOne = id => {
+    console.log('fetchOne function called');
     $.get(`${__API_URL__}book/${id}`)
       .then(data => {
-        console.log(data);
         $('#display').empty();
         $('#display').append(Book.addDescription(data[0]));
       })
@@ -48,7 +50,6 @@ const __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
   Book.updateOne = id => {
     $.get(`${__API_URL__}book/${id}`)
       .then(data => {
-        console.log(data);
         Book.insertFormValues(data[0]);
       });
   };
