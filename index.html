@@ -16,13 +16,15 @@
     <title>Book App</title>
 
     <script id="list-template" type="text/x-handlebars-template">
-      <article class="clearfix books" data-fetchone="{{book_id}}">
+      <a href="/book/{{book_id}}/update">
+        <article class="clearfix books" data-fetchone="{{book_id}}">
         <header>
           <h2>{{book_id}}. {{title}}</h2><h4>{{isbn}}</h4>
           <div class="byline"><h3>By {{author}}</h3></div>
         </header>
         <section class="book-img"><img src="{{image_url}}" /></section>
       </article>
+    </a>
     </script>
 
     <script id="book-display-template" type="text/x-handlebars-template">
@@ -46,7 +48,7 @@
         <ul>
           <li class="tab" data-content="books"><a href="/"> Home</a></li>
           <li class="tab" data-content="about"><a href="/about"> About</a></li>
-          <li class="tab" data-content="newbook"><a href="/new"> Add Book</a></li>
+          <li class="tab" data-content="newbook"><a href="/book/new"> Add Book</a></li>
         </ul>
       </nav>
     </header>

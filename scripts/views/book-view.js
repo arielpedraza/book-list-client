@@ -9,7 +9,8 @@ var app = app || {};
       $('#books .books').hide();
       $('#display').empty();
       $('#display').fadeIn();
-      app.Book.fetchOne($(this).data('fetchone'));
+      // app.Book.fetchOne($(this).data('fetchone'));
+      // app.Book.fetchOne(ctx.params.id);
     });
     $('#display').on('click', '#update-button', bookView.initUpdatePage);
     $('#display').on('click', '#delete-button', app.Book.deleteRecord);
@@ -24,7 +25,6 @@ var app = app || {};
       image_url: $('#book-img-url').val(),
       description: $('#book-description').val(),
     });
-    // $('#books').append(book.toHtml());
     book.insertRecord();
     window.location = '/';
   }
@@ -38,9 +38,8 @@ var app = app || {};
       image_url: $('#update-img-url').val(),
       description: $('#update-description').val(),
     });
-    app.Book.all = [];
     book.updateRecord($('#update-button').data('id'));
-    window.location = '/';
+    // window.location = '/';
   }
 
   bookView.initIndexPage = () => {
@@ -62,7 +61,6 @@ var app = app || {};
 
   bookView.initUpdatePage = function () {
     $('.tab-content').hide();
-    console.log($(this).data('id'));
     app.Book.updateOne($(this).data('id'));
     $('#updatebook').fadeIn();
   };
