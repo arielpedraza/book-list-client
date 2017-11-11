@@ -1,5 +1,4 @@
 .icon-menu {
-  border: 1px solid red;
   position: absolute;
   z-index: 2;
   top: 5px;
@@ -17,7 +16,6 @@
 .main-nav ul {
   position: relative;
   z-index: 1;
-  /*display: none;*/
   padding: 0;
   list-style: none;
   clear: both;
@@ -31,9 +29,6 @@
 }
 .hide-nav {
   display: none;
-}
-.book-img {
-  border: 2px solid red;
 }
 #adminlogin {
   position: fixed;

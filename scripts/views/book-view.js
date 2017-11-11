@@ -45,6 +45,13 @@ var app = app || {};
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
     $('.tab-content').hide();
     $('#books').fadeIn();
+    if(localStorage.token === 'true'){
+      $('#login').fadeOut();
+      $('#logout').fadeIn();
+    }else{
+      $('#logout').fadeOut();
+      $('#login').fadeIn();
+    }
   };
 
   bookView.initAboutPage = () => {
@@ -75,3 +82,5 @@ $('.tab a').on('click', () => $('.main-nav ul').addClass('hide-nav'));
 $('.icon-menu').click(() => $('.main-nav ul').toggleClass('hide-nav'));
 $('main').on('click', () =>$('.main-nav ul').addClass('hide-nav'));
 $('main').click(() => $('#adminlogin').fadeOut());
+$('#login').click(() => app.adminView.initAdminPage());
+$('#logout').click(() => app.adminView.initAdminLogout());

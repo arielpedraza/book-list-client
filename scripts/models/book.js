@@ -106,8 +106,11 @@ var app = app || {};
         if(result) {
           localStorage.token = true;
           app.adminView.handleAdmin();
+          $('#login').fadeOut();
+          $('#logout').fadeIn();
         }else{
-          page('/');
+          alert('Password Incorrect');
+          // page('/');
         }
       })
   };
