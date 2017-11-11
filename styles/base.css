@@ -2,11 +2,15 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+  box-sizing: border-box;
 }
-
+body {
+  background-color: #faddad;
+}
 main {
-  margin: 2vw;
+  padding: 4vw 0;
   text-align: center;
+  overflow: auto;
 }
 
 nav {

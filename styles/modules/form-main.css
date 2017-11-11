@@ -1,0 +1,19 @@
+#newbook h1, #updatebook h1{
+  font-size: 7vw;
+  margin-bottom: 4vw;
+  text-decoration: underline;
+}
+
+#newbook button, #updatebook button {
+  float: right;
+  margin-right: 5%;
+  width: 50vw;
+  height: 15vw;
+  font-size: 7vw;
+}
+
+input, textarea {
+  width: 90%;
+  font-size: 5.5vw;
+  margin: 0 auto 4vw auto;
+}
