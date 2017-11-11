@@ -1,8 +1,13 @@
 'use strict';
 
-page('/', app.bookView.initIndexPage);
+if(window.location.pathname !== '/') {
+  page.base('/book-list-client');
+}
+
+page('/', app.Book.fetchAll(app.bookView.initIndexPage));
 page('/about', app.bookView.initAboutPage);
-page('/new', app.bookView.initNewPage);
+page('/book/new', app.bookView.initNewPage);
+page('/book/:id', (ctx) => app.bookView.handleSelectBook(ctx));
+page('/book/:id/update', (ctx) => app.bookView.initUpdatePage(ctx));
 
 page();
-//why is this not working
