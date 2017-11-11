@@ -1,4 +1,5 @@
 'use strict';
+
 if(window.location.pathname !== '/') {
   page.base('/book-list-client');
 }

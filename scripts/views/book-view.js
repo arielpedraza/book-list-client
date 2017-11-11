@@ -36,7 +36,7 @@ var app = app || {};
     });
     book.updateRecord($('#update-button').data('id'));
     // window.location = '/';
-    app.Book.fetchAll(app.bookView.initIndexPage)
+    // app.Book.fetchAll(app.bookView.initIndexPage)
   }
 
   bookView.initIndexPage = () => {

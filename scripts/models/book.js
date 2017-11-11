@@ -32,6 +32,7 @@ var app = app || {};
   };
 
   Book.fetchAll = callback => {
+    console.log('fetchAll function called');
     $.get(`${__API_URL__}api/v1/books`)
       .then(Book.loadAll)
       .then(callback)
@@ -79,17 +80,19 @@ var app = app || {};
         isbn: this.isbn,
         image_url: this.image_url,
         description: this.description
-      }
+      },
+      success: () => page('/')
     })
-      .then(app.Book.fetchAll(app.bookView.initIndexPage))
+    // .success(app.Book.fetchAll(app.bookView.initIndexPage))
   };
 
   Book.deleteRecord = function() {
     $.ajax({
       url: `${__API_URL__}book/delete/${$(this).data('id')}`,
       method: 'DELETE',
+      success: () => page('/')
     })
-      .then(app.Book.fetchAll(app.bookView.initIndexPage))
+      // .then(app.Book.fetchAll(app.bookView.initIndexPage))
   };
 
   module.Book = Book;
