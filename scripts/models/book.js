@@ -3,10 +3,10 @@ var app = app || {};
 
 ((module) => {
   // var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
-  var __API_URL__ = 'http://172.16.3.126:3000/';
-  // if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-  //   __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
-  // }
+  // var __API_URL__ = 'http://172.16.3.126:3000/';
+  if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+    var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  }
   Book.all = [];
 
   function errorCallback(err) {
