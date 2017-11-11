@@ -71,3 +71,7 @@ var app = app || {};
 
 $('#new-book').on('submit', app.bookView.submit);
 $('#update-book').on('submit', app.bookView.submitUpdate);
+$('.tab a').on('click', () => $('.main-nav ul').addClass('hide-nav'));
+$('.icon-menu').click(() => $('.main-nav ul').toggleClass('hide-nav'));
+$('main').on('click', () =>$('.main-nav ul').addClass('hide-nav'));
+$('main').click(() => $('#adminlogin').fadeOut());

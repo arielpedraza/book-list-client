@@ -10,7 +10,9 @@ body {
 main {
   padding: 4vw 0;
   text-align: center;
-  overflow: auto;
+  /*overflow: hidden;*/
+  min-height: 92vh;
+  border: 1px solid blue;
 }
 
 nav {
@@ -28,14 +30,19 @@ h3 {
 .book-img {
   max-height: 10em;
   overflow: hidden;
-
+  width: 70%;
+  margin: 0 auto;
 }
 
 img {
-  width: 70%;
+  width: 100%;
   object-fit: cover;
 }
 
 .books {
   margin-bottom: 5vw;
 }
+
+/*.books a {
+  width: 70%;
+}*/

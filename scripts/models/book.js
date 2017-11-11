@@ -45,6 +45,9 @@ var app = app || {};
       .then(data => {
         $('#display').empty();
         $('#display').append(Book.addDescription(data[0]));
+        if(localStorage.token === 'true'){
+          app.adminView.handleAdmin();
+        }
       })
   };
 
@@ -83,16 +86,24 @@ var app = app || {};
       },
       success: () => page('/')
     })
-    // .success(app.Book.fetchAll(app.bookView.initIndexPage))
   };
 
   Book.deleteRecord = function() {
+    console.log('Book.deleteRecord function called');
     $.ajax({
       url: `${__API_URL__}book/delete/${$(this).data('id')}`,
       method: 'DELETE',
       success: () => page('/')
     })
-      // .then(app.Book.fetchAll(app.bookView.initIndexPage))
+  };
+
+  Book.verifyAdmin = function(token) {
+    $.get(`${__API_URL__}/admin`, {token})
+      .then(() => {
+        localStorage.token = true;
+        app.adminView.handleAdmin();
+      })
+      .catch(() => page('/'))
   };
 
   module.Book = Book;
