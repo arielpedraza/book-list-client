@@ -12,9 +12,11 @@ var app = app || {};
   adminView.handleAdmin = () => {
     console.log('adminView.handleAdmin function called');
     $('#update-button, #delete-button').removeClass('hide-nav');
+    $('#adminlogin').fadeOut();
   };
 
-  $('admin-login').on('submit', function(event) {
+  $('#admin-login').on('submit', function(event) {
+    console.log('password processed');
     event.preventDefault();
     let token = event.target.password.value;
     app.Book.verifyAdmin(token);

@@ -2,7 +2,8 @@
 var app = app || {};
 
 ((module) => {
-  var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  // var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  var __API_URL__ = 'http://172.16.3.126:3000/';
   // if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
   //   __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
   // }
@@ -98,12 +99,17 @@ var app = app || {};
   };
 
   Book.verifyAdmin = function(token) {
-    $.get(`${__API_URL__}/admin`, {token})
-      .then(() => {
-        localStorage.token = true;
-        app.adminView.handleAdmin();
+    console.log('Book.verifyAdmin function called');
+    $.get(`${__API_URL__}admin/`, {token})
+      .then((result) => {
+        console.log(result);
+        if(result) {
+          localStorage.token = true;
+          app.adminView.handleAdmin();
+        }else{
+          page('/');
+        }
       })
-      .catch(() => page('/'))
   };
 
   module.Book = Book;
