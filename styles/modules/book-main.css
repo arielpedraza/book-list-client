@@ -41,3 +41,21 @@
   width: 75%;
   margin: 0 auto;
 }
+#login, #logout {
+  cursor: pointer;
+}
+.books {
+  overflow: visible;
+}
+.books .book-img {
+  position: relative;
+  min-height: 20vw;
+}
+.books header {
+  background-color: #777;
+  opacity: 0.85;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
