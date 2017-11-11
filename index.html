@@ -2,6 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta property="og:title" content="Codefellows Book App" />
+    <meta property="og:type" content="webapp" />
+    <meta property="og:url" content="https://arielpedraza.github.io/book-list-client/" />
+    <meta property="og:image" content="http://demi.dog/demi.jpg" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:description" content="Class 301 - Week 3 - Book List App" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/icons.css">
@@ -19,27 +26,29 @@
     <title>Book App</title>
 
     <script id="list-template" type="text/x-handlebars-template">
-      <a href="/book/{{book_id}}">
         <article class="clearfix books" data-fetchone="{{book_id}}">
-        <header>
-          <h2>{{book_id}}. {{title}}</h2><h4>{{isbn}}</h4>
-          <div class="byline"><h3>By {{author}}</h3></div>
-        </header>
-        <section class="book-img"><img src="{{image_url}}" /></section>
+        <section class="book-img">
+          <a href="book/{{book_id}}">
+            <header>
+              <h2>{{title}}</h2><h4>{{isbn}}</h4>
+              <h3>By {{author}}</h3>
+            </header>
+            <img src="{{image_url}}" />
+          </a>
+        </section>
       </article>
-    </a>
     </script>
 
     <script id="book-display-template" type="text/x-handlebars-template">
       <article class="clearfix" id="{{book_id}}">
         <header>
           <h2>{{title}}</h2>
-          <div class="byline"><h4>{{author}}</h4><h4>{{isbn}}</h4></div>
+          <h4>{{author}}</h4><h4>{{isbn}}</h4>
         </header>
         <section class="book-img"><img src="{{image_url}}" /></section>
         <p>{{description}}</p>
-        <a href="/book/{{book_id}}/update"><button id="update-button" type="button" name="update" data-id="{{book_id}}">Update</button></a>
-        <button id="delete-button" type="button" name="delete" data-id="{{book_id}}">Delete</button>
+        <a href="book/{{book_id}}/update"><button id="update-button" class="hide-nav" type="button" name="update" data-id="{{book_id}}">Update</button></a>
+        <button id="delete-button" class="hide-nav" type="button" name="delete" data-id="{{book_id}}">Delete</button>
       </article>
     </script>
   </head>
@@ -49,15 +58,18 @@
       <nav class="main-nav">
         <h1>Book App</h1>
         <div class="icon-menu"></div>
-        <ul>
+        <ul class="hide-nav">
           <li class="tab" data-content="books"><a href=""> Home</a></li>
           <li class="tab" data-content="about"><a href="about"> About</a></li>
           <li class="tab" data-content="newbook"><a href="book/new"> Add Book</a></li>
+          <li id="login" class="tab"><a> Admin Login</a></li>
+          <li id="logout" class="tab"><a> Admin Logout</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section id="books" class="tab-content"></section>
+      <section id="about" class="tab-content" style="display:none"><h2>We are no one.</h2></section>
       <section id="display" class="tab-content"></section>
       <section id="newbook" class="tab-content" style="display:none">
         <h1>Add a New Book</h1>
@@ -82,14 +94,18 @@
         </form>
       </section>
     </main>
+      <section id="adminlogin" class="tab-content" style="display:none">
+        <h1>Login</h1>
+        <form action="#" id="admin-login">
+          <input type="password" name="password" placeholder="1234" required>
+        </form>
+      </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="scripts/models/book.js"></script>
     <script src="scripts/views/book-view.js"></script>
+    <script src="scripts/views/admin-view.js"></script>
     <script src="scripts/views/routes.js"></script>
-    <!-- <script>
-      app.Book.fetchAll(app.bookView.initIndexPage);
-    </script> -->
   </body>
 </html>

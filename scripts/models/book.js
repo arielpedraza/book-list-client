@@ -2,9 +2,10 @@
 var app = app || {};
 
 ((module) => {
-  var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  // var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+  // var __API_URL__ = 'http://172.16.3.126:3000/';
   // if(location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-  //   __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
+    var __API_URL__ = 'https://ml-ap-booklist.herokuapp.com/';
   // }
   Book.all = [];
 
@@ -45,6 +46,9 @@ var app = app || {};
       .then(data => {
         $('#display').empty();
         $('#display').append(Book.addDescription(data[0]));
+        if(localStorage.token === 'true'){
+          app.adminView.handleAdmin();
+        }
       })
   };
 
@@ -83,16 +87,32 @@ var app = app || {};
       },
       success: () => page('/')
     })
-    // .success(app.Book.fetchAll(app.bookView.initIndexPage))
   };
 
   Book.deleteRecord = function() {
+    console.log('Book.deleteRecord function called');
     $.ajax({
       url: `${__API_URL__}book/delete/${$(this).data('id')}`,
       method: 'DELETE',
       success: () => page('/')
     })
-      // .then(app.Book.fetchAll(app.bookView.initIndexPage))
+  };
+
+  Book.verifyAdmin = function(token) {
+    console.log('Book.verifyAdmin function called');
+    $.get(`${__API_URL__}admin/`, {token})
+      .then((result) => {
+        console.log(result);
+        if(result) {
+          localStorage.token = true;
+          app.adminView.handleAdmin();
+          $('#login').fadeOut();
+          $('#logout').fadeIn();
+        }else{
+          alert('Password Incorrect');
+          // page('/');
+        }
+      })
   };
 
   module.Book = Book;

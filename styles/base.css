@@ -3,6 +3,9 @@
   padding: 0;
   list-style-type: none;
   box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  font-family: Arial;
 }
 body {
   background-color: #faddad;
@@ -10,7 +13,7 @@ body {
 main {
   padding: 4vw 0;
   text-align: center;
-  overflow: auto;
+  min-height: 92vh;
 }
 
 nav {
@@ -26,13 +29,12 @@ h3 {
 }
 
 .book-img {
-  max-height: 10em;
-  overflow: hidden;
-
+  width: 70%;
+  margin: 0 auto;
 }
 
 img {
-  width: 70%;
+  width: 100%;
   object-fit: cover;
 }
 
